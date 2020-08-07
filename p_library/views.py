@@ -59,5 +59,4 @@ def publisher(request):
     data = {
         "publishers": publs,
     }
-    print(data)
     return HttpResponse(template.render(data, request))
