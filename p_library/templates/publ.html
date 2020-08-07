@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		  integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<main id="main" role="main" class="container">
+	<body>
+	<h3>Всего издательств {{ publishers|length }}:</h3>
+	<ul class="list-group">
+
+		{% for publisher in publishers %}
+		<li class="list-group-item"><h4>Название издательства: {{ publisher.name }}</h4>
+			<h5>В наличие {{ publisher.book_set.all|length }}</h5>
+			<ul class="list-group">
+			{% for book in publisher.book_set.all %}
+				<li class="list-group-item">
+				"{{ book.title }}" {{ book.author }}
+				</li>
+			{% endfor %}
+			</ul>
+		</li>
+		{% endfor %}
+	</ul>
+	</body>
+</main>
