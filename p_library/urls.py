@@ -1,7 +1,10 @@
-from django.urls import path
+from django.contrib import admin
+from django.urls import path, include
+
 from p_library import views
 
-app_name = "p_library"
+app_name = 'p_library'
+
 
 urlpatterns = [
     path('', views.BookList.as_view(), name="book_list"),
