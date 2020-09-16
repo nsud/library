@@ -143,11 +143,11 @@ def borrowed_book(request):
             friend = Friend.objects.get(id=friend_id)
             if not book:
                 return redirect('/index/')
-            if book.copy_count < 1:
+            if int(book.copy_count) < 1:
                 book.copy_count = 0
             else:
-                book.copy_count -= 1
-                book.borrowed_book_count += 1
+                book.copy_count = int(book.copy_count) - 1
+                book.borrowed_book_count = int(book.copy_count)+1
                 book.friend.add(friend)
             book.save()
         return redirect('/index/')
