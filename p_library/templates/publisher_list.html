@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		  integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<main id="main" role="main" class="container">
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 my-3" >
+                <div class="text-secondary text-center font-weight-bold my-3">
+                    <a class="text-secondary text-decoration-none" href="{%url 'p_library:library'%}">Библиотека</a> |
+                    <a class="text-secondary text-decoration-none" href="{%url 'p_library:book_list'%}">Книги</a> |
+                    <a class="text-secondary text-decoration-none" href="{%url 'p_library:author_list'%}">Авторы</a> |
+                    <a class="text-secondary text-decoration-none" href="{%url 'p_library:friend_list'%}">Друзья</a>
+                </div>
+                <h2 class="text-center my-3">Список издательств:</h2>
+                {% for publisher in object_list %}
+                    <ul class="list-group font-weight-bold">
+                        <li class="list-group-item list-group-item-dark my-3">
+                            {{ publisher.name }}
+                            <ul class="list-group">
+                                {% for book in publisher.books.all %}
+                                    <li class="list-group-item list-group-item-secondary"> {{ book.title }}</li>
+                                {% endfor %}
+                            </ul>
+                            <div style="margin-top:10px;text-align:right;">
+                                <a class="btn btn-warning" href="{%url 'p_library:publisher_update' publisher.id %}">Изменить</a></div>
+                        </li>
+                    </ul>
+                {% endfor %}
+                <a class="btn btn-success my-3" href="{%url 'p_library:publisher_create'%}">Добавить издательство</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
